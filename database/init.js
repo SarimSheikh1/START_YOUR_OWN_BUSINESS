@@ -8,4 +8,5 @@ CREATE TABLE IF NOT EXISTS customers (id INTEGER PRIMARY KEY, business_id INTEGE
 CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, business_id INTEGER NOT NULL, sku TEXT, name TEXT NOT NULL, purchase_price REAL DEFAULT 0, sale_price REAL DEFAULT 0, stock REAL DEFAULT 0, minimum_stock REAL DEFAULT 0, created_at TEXT DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(business_id) REFERENCES businesses(id));
 CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY, business_id INTEGER NOT NULL, category TEXT NOT NULL, description TEXT, amount REAL NOT NULL, expense_date TEXT NOT NULL, FOREIGN KEY(business_id) REFERENCES businesses(id));
 CREATE TABLE IF NOT EXISTS sales (id INTEGER PRIMARY KEY, business_id INTEGER NOT NULL, customer_id INTEGER, total REAL NOT NULL, sale_date TEXT DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(business_id) REFERENCES businesses(id));
+CREATE TABLE IF NOT EXISTS audit_logs (id INTEGER PRIMARY KEY, user_id INTEGER, action TEXT NOT NULL, entity TEXT NOT NULL, entity_id INTEGER, details TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id));
 `);
