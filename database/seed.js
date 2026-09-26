@@ -1,6 +1,6 @@
 require('./init');
 const db = require('./db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const templates = [
 ['Home-Based Digital Marketing Agency','Services','Lean agency for local businesses and online clients.',200000,450000,1200000,70000,0,40000,0,70000,70000,80000,50000,70000,80000,140000,280000,4,'Moderate','High',1,0,'Beginner'],
 ['Mobile Accessories Kiosk','Retail','Small retail counter with high-turnover accessories.',250000,500000,1200000,80000,230000,65000,40000,25000,30000,15000,60000,50000,80000,150000,260000,7,'Moderate','Medium',1,1,'Beginner'],

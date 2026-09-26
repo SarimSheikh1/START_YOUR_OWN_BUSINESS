@@ -1,6 +1,6 @@
 require('dotenv').config();
 require('./database/init');
-const express=require('express'), cors=require('cors'), bcrypt=require('bcrypt'), jwt=require('jsonwebtoken');
+const express=require('express'), cors=require('cors'), bcrypt=require('bcryptjs'), jwt=require('jsonwebtoken');
 const {body, validationResult}=require('express-validator');
 const db=require('./database/db');
 const app=express(), PORT=process.env.PORT||5000, SECRET=process.env.JWT_SECRET||'development-only-secret';
