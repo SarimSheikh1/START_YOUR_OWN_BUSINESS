@@ -1,7 +1,8 @@
 const $=s=>document.querySelector(s), money=n=>`PKR ${new Intl.NumberFormat('en-PK').format(n)}`;
+const dashboardLink=document.createElement('a');dashboardLink.href='/dashboard.html';dashboardLink.textContent='Dashboard';dashboardLink.style.cssText='padding:12px;color:#3155c7;font-weight:700;text-decoration:none';$('#loginBtn').before(dashboardLink);
 let mode='login', selected=[];
 const auth=$('#auth');
-function setNav(){const loggedIn=!!localStorage.token;$('#loginBtn').textContent=loggedIn?'My plans':'Login';$('#registerBtn').textContent=loggedIn?'Log out':'Create account';$('#loginBtn').onclick=loggedIn?plans:()=>showAuth('login');$('#registerBtn').onclick=loggedIn?logout:()=>showAuth('register');}
+function setNav(){const loggedIn=!!localStorage.token;dashboardLink.hidden=!loggedIn;$('#loginBtn').textContent=loggedIn?'My plans':'Login';$('#registerBtn').textContent=loggedIn?'Log out':'Create account';$('#loginBtn').onclick=loggedIn?plans:()=>showAuth('login');$('#registerBtn').onclick=loggedIn?logout:()=>showAuth('register');}
 setNav();
 function showAuth(next){mode=next;$('#authTitle').textContent=next==='login'?'Welcome back':'Create your BusinessPro account';$('#authName').parentElement.hidden=next==='login';auth.showModal();}
 $('#capital').addEventListener('input',e=>{let n=e.target.value.replace(/\D/g,'');e.target.value=n?Number(n).toLocaleString('en-PK'):''});
