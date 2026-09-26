@@ -4,7 +4,7 @@ const express=require('express'), cors=require('cors'), bcrypt=require('bcryptjs
 const {body, validationResult}=require('express-validator');
 const db=require('./database/db');
 const app=express(), PORT=process.env.PORT||5000, SECRET=process.env.JWT_SECRET||'development-only-secret';
-app.use(cors()); app.use(express.json()); app.use(express.static('public'));
+app.use(cors()); app.use(express.json()); app.use(express.static('public',{setHeaders:res=>res.setHeader('Cache-Control','no-store, max-age=0, must-revalidate')}));
 const fail=(res,status,message)=>res.status(status).json({success:false,message});
 const audit=(userId,action,entity,entityId,details='')=>db.prepare('INSERT INTO audit_logs(user_id,action,entity,entity_id,details) VALUES(?,?,?,?,?)').run(userId||null,action,entity,entityId||null,details);
 function auth(req,res,next){ const token=(req.headers.authorization||'').replace('Bearer ',''); try{req.user=jwt.verify(token,SECRET);next();}catch{return fail(res,401,'Please log in to continue.');} }
